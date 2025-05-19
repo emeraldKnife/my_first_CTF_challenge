@@ -46,7 +46,7 @@ print("Hidden Message:", hidden_message)
 
 <br>
 
-This will lead us with the message `axpwagjt`. This is not the final code. The hint given is `33355588 -> ilu`. This hints towards the conversion using the dial pad. So, `axpwagjt` becomes `299792458`, which is the password. Then we need to run `app.py`.
+This will lead us with the message `axpwagjt,run-app.py`. This is not the final code. The hint given is `33355588 -> ilu`. This hints towards the conversion using the dial pad. So, `axpwagjt` becomes `299792458`, which is the password. Then we need to run `app.py`.
 
 <br>
 <br>
