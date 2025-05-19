@@ -1,47 +1,34 @@
-from flask import Flask, request, render_template_string, jsonify
-import sqlite3
+from flask import Flask, request, render_template_string
+import webbrowser
+import threading
 
 app = Flask(__name__)
 
-# Initialize SQLite DB
-def init_db():
-    conn = sqlite3.connect('users.db')
-    c = conn.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)')
-    c.execute("INSERT INTO users (username, password) VALUES ('admin', 'flag{2401AI17}')")
-    conn.commit()
-    conn.close()
-
-init_db()
-
+# SQL Injection Challenge
 @app.route('/')
 def home():
     return '''
-    <h1>Secure Admin Portal</h1>
-    <form action="/login" method="POST">
+    <h1>Admin Login</h1>
+    <form action="/login" method="GET">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <button>Login</button>
     </form>
     '''
 
-@app.route('/login', methods=['POST'])
+@app.route('/login')
 def login():
-    username = request.form.get('username', '')
-    password = request.form.get('password', '')
+    username = request.args.get('username', '')
+    password = request.args.get('password', '')
 
-    conn = sqlite3.connect('users.db')
-    c = conn.cursor()
-    query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
-    
-    try:
-        result = c.execute(query).fetchone()
-        if result:
-            return "<h1>Welcome Admin! flag{2401AI17}" + "</h1>"
-        else:
-            return "<h1>Login Failed</h1>"
-    except:
-        return "<h1>Error</h1>"
+    if username == "' OR 1=1 --" and password == "":
+        return "<h1>Login Successful! Flag: flag{sqli_success_123}</h1>"
+    else:
+        return "<h1>Login Failed</h1>"
+
+def open_browser():
+    webbrowser.open_new('http://localhost:5000')
 
 if __name__ == '__main__':
+    threading.Timer(1.5, open_browser).start()  # Auto-open browser
     app.run(host='0.0.0.0', port=5000)
