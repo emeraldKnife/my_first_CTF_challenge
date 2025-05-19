@@ -10,4 +10,4 @@ People of OZ are curious to know the code. Help them find the hidden code within
 <br>
 <br>
 
-![city_photo](city_of_OZ.png)
+![city_photo](hidden_portal.png)
