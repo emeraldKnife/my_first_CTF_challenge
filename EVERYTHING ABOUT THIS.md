@@ -47,3 +47,26 @@ print("Hidden Message:", hidden_message)
 <br>
 
 This will lead us with the message "aHR0cDovL2xvY2FsaG9zdDo1MDAw" which can be easily recognised as a base64 code. When converted, we get "http://localhost:5000". This is the link for the web that is to be exploited.
+
+<br>
+<br>
+
+After this, we will exploit the web page. This can be done using SQL injection.
+What Happened: In our Flask app, the login query concatenates user input directly into the SQL query:
+
+```python
+query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
+```
+Exploit: By injecting ' OR 1=1 -- into the username field, the query becomes:
+
+```sql
+SELECT * FROM users WHERE username='' OR 1=1 -- ' AND password=''
+```
+* OR 1=1 makes the condition always true.
+* -- comments out the rest of the query (ignoring the password check).
+<br>
+<br>
+Then we finally get the flag!
+<br>
+
+**`flag{2401AI17}`**
