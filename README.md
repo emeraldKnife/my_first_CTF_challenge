@@ -1,5 +1,5 @@
 # my_first_CTF_challenge
-This is my first CTF challenge that uses LSB steganography and web exploitation.
+This is my first CTF challenge!!!
 
 The city of OZ has an ancient code that is unknown to the new generation. Somehow, after many excavations, people found a picture of the city and a text note that said, "Within lies the divine code..."!
 
