@@ -1,7 +1,7 @@
 from PIL import Image
 
 def encode_lsb(image_path, output_path):
-    secret_password = "axpwagjt"
+    secret_password = "axpwagjt,run-app.py"
     binary_secret = ''.join(format(ord(c), '08b') for c in secret_password)
     binary_secret += '00000000'  # Null terminator
     
