@@ -39,7 +39,7 @@ def decode_lsb(image_path):
 
     return ''.join(message)
 
-image_path = "city_of_OZ.png"
+image_path = "hidden_portal.png"
 hidden_message = decode_lsb(image_path)
 print("Hidden Message:", hidden_message)
 ```
