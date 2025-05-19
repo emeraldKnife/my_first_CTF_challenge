@@ -2,7 +2,7 @@
 
 ## About the challenge
 
-This is a CTF challenge that uses LSB steganography and web exploitation. The challenge consists of hiding a link in the photo given. The LSBs of pixels of the photo were modified to store the link. The link directs us to the web page which is to be exploited for the flag. The flag is of the format `flag{...}`.
+This is a CTF challenge that uses LSB steganography and web exploitation. The challenge consists of hiding a password in the photo given. The LSBs of pixels of the photo were modified to store the password. The password opens the web page which is to be exploited for the flag. The flag is of the format `flag{...}`.
 
 ## Solution
 
@@ -46,13 +46,14 @@ print("Hidden Message:", hidden_message)
 
 <br>
 
-This will lead us with the message "aHR0cDovL2xvY2FsaG9zdDo1MDAw" which can be easily recognised as a base64 code. When converted, we get "http://localhost:5000". This is the link for the web that is to be exploited.
+This will lead us with the message `axpwagjt`. This is not the final code. The hint given is `33355588 -> ilu`. This hints towards the conversion using the dial pad. So, `axpwagjt` becomes `299792458`, which is the password. Then we need to run `app.py`.
 
 <br>
 <br>
 
-After this, we will exploit the web page. This can be done using SQL injection.
-What Happened: In our Flask app, the login query concatenates user input directly into the SQL query:
+After this, we will enter the password and exploit the web page. This can be done using SQL injection.
+<br>
+In our Flask app, the login query concatenates user input directly into the SQL query:
 
 ```python
 query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
